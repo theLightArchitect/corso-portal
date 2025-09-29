@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
   typescript: {
     // Enable strict type checking
     ignoreBuildErrors: false,
@@ -57,10 +54,11 @@ const nextConfig = {
     ];
   },
   async rewrites() {
+    const apiUrl = process.env.C0RS0_API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
     return [
       {
         source: '/api/license/:path*',
-        destination: `${process.env.C0RS0_API_URL}/api/v1/:path*`,
+        destination: `${apiUrl}/api/v1/:path*`,
       },
     ];
   },
