@@ -1,0 +1,419 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 262 83% 58%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 262 83% 58%;
+  }
+
+  /* Biblical theme variables */
+  .theme-king {
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 40% 98%;
+    --accent: 262 100% 95%;
+  }
+
+  .theme-wisdom {
+    --primary: 45 93% 47%;
+    --primary-foreground: 45 86% 11%;
+    --accent: 48 100% 88%;
+  }
+
+  .theme-security {
+    --primary: 215 28% 17%;
+    --primary-foreground: 210 40% 98%;
+    --accent: 220 14% 96%;
+  }
+
+  .theme-infrastructure {
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    --accent: 214 100% 97%;
+  }
+
+  .theme-divine {
+    --primary: 48 96% 53%;
+    --primary-foreground: 45 86% 11%;
+    --accent: 48 100% 88%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-modern;
+  }
+
+  /* Biblical typography */
+  .biblical-text {
+    @apply font-biblical;
+  }
+
+  .biblical-heading {
+    @apply font-biblical font-semibold tracking-wide;
+  }
+
+  /* Scroll bar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/40;
+  }
+
+  /* Focus styles for accessibility */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background;
+  }
+
+  /* Biblical glow effects */
+  .biblical-glow {
+    box-shadow: 0 0 20px rgba(157, 106, 255, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .biblical-glow:hover {
+    box-shadow: 0 0 30px rgba(157, 106, 255, 0.5);
+  }
+
+  .wisdom-glow {
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .wisdom-glow:hover {
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+  }
+
+  /* Biblical Animation Keyframes */
+  @keyframes biblical-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(157, 106, 255, 0.5);
+      text-shadow: 0 0 10px rgba(157, 106, 255, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(157, 106, 255, 0.8);
+      text-shadow: 0 0 20px rgba(157, 106, 255, 0.6);
+    }
+  }
+
+  @keyframes wisdom-pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.7);
+    }
+  }
+
+  @keyframes divine-shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  @keyframes security-scan {
+    0%, 100% {
+      border-color: rgba(107, 114, 128, 0.3);
+      box-shadow: 0 0 0 0 rgba(107, 114, 128, 0.1);
+    }
+    50% {
+      border-color: rgba(107, 114, 128, 0.8);
+      box-shadow: 0 0 0 4px rgba(107, 114, 128, 0.2);
+    }
+  }
+
+  @keyframes infrastructure-flow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes holy-ascension {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0.7;
+    }
+    50% {
+      transform: translateY(-10px) rotate(180deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0) rotate(360deg);
+      opacity: 0.7;
+    }
+  }
+
+  /* Animation classes */
+  .animate-biblical-glow {
+    animation: biblical-glow 3s ease-in-out infinite;
+  }
+
+  .animate-wisdom-pulse {
+    animation: wisdom-pulse 2s ease-in-out infinite;
+  }
+
+  .animate-divine-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(234, 179, 8, 0.4), transparent);
+    background-size: 200% 100%;
+    animation: divine-shimmer 2s infinite;
+  }
+
+  .animate-security-scan {
+    animation: security-scan 2.5s ease-in-out infinite;
+  }
+
+  .animate-infrastructure-flow {
+    background: linear-gradient(45deg, #3b82f6, #1d4ed8, #3b82f6);
+    background-size: 200% 200%;
+    animation: infrastructure-flow 3s ease infinite;
+  }
+
+  .animate-holy-ascension {
+    animation: holy-ascension 4s ease-in-out infinite;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Loading states */
+  .loading-skeleton {
+    @apply animate-pulse bg-muted rounded;
+  }
+
+  .loading-dots::after {
+    content: '';
+    animation: dots 2s infinite;
+  }
+
+  @keyframes dots {
+    0%, 20% {
+      content: '';
+    }
+    40% {
+      content: '.';
+    }
+    60% {
+      content: '..';
+    }
+    80%, 100% {
+      content: '...';
+    }
+  }
+
+  /* Status indicators */
+  .status-active {
+    @apply text-emerald-600 bg-emerald-50 border-emerald-200;
+  }
+
+  .status-expired {
+    @apply text-red-600 bg-red-50 border-red-200;
+  }
+
+  .status-trial {
+    @apply text-amber-600 bg-amber-50 border-amber-200;
+  }
+
+  .status-suspended {
+    @apply text-gray-600 bg-gray-50 border-gray-200;
+  }
+
+  /* Tier badges */
+  .tier-explorer {
+    @apply bg-gray-100 text-gray-800 border-gray-300;
+  }
+
+  .tier-developer {
+    @apply bg-blue-100 text-blue-800 border-blue-300;
+  }
+
+  .tier-professional {
+    @apply bg-purple-100 text-purple-800 border-purple-300;
+  }
+
+  .tier-team {
+    @apply bg-green-100 text-green-800 border-green-300;
+  }
+
+  .tier-enterprise {
+    @apply bg-indigo-100 text-indigo-800 border-indigo-300;
+  }
+
+  .tier-sovereign {
+    @apply bg-yellow-100 text-yellow-800 border-yellow-300;
+  }
+
+  .tier-academic {
+    @apply bg-teal-100 text-teal-800 border-teal-300;
+  }
+
+  /* Chart styling */
+  .recharts-cartesian-axis-tick-value {
+    @apply text-muted-foreground text-xs;
+  }
+
+  .recharts-legend-item-text {
+    @apply text-foreground;
+  }
+
+  /* Form styling */
+  .form-field {
+    @apply space-y-2;
+  }
+
+  .form-label {
+    @apply text-sm font-medium text-foreground;
+  }
+
+  .form-input {
+    @apply w-full px-3 py-2 border border-input bg-background text-foreground rounded-md focus-ring;
+  }
+
+  .form-error {
+    @apply text-sm text-destructive;
+  }
+
+  /* Button variants */
+  .btn-biblical {
+    @apply bg-biblical-gradient text-white hover:shadow-lg transition-all duration-300 biblical-glow;
+  }
+
+  .btn-wisdom {
+    @apply bg-wisdom-gradient text-biblical-wisdom-900 hover:shadow-lg transition-all duration-300 wisdom-glow;
+  }
+
+  /* Card styling */
+  .biblical-card {
+    @apply bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300;
+  }
+
+  .biblical-card-header {
+    @apply px-6 py-4 border-b border-border;
+  }
+
+  .biblical-card-content {
+    @apply px-6 py-4;
+  }
+
+  .biblical-card-footer {
+    @apply px-6 py-4 border-t border-border bg-muted/50;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    @apply text-black bg-white;
+  }
+}
