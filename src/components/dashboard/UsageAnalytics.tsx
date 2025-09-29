@@ -267,7 +267,7 @@ export const UsageAnalytics: React.FC<UsageAnalyticsProps> = ({
 
       {/* Main Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Primary Chart */}
+        {/* Primary Chart - Fixed ResponsiveContainer */}
         <div className="lg:col-span-2 bg-black/30 backdrop-blur-sm rounded-lg p-6 border border-gray-600/30">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-medium text-white">
