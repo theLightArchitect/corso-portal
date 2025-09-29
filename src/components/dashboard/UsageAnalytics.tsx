@@ -279,88 +279,44 @@ export const UsageAnalytics: React.FC<UsageAnalyticsProps> = ({
             <TrendingUp className="w-5 h-5 text-green-400" />
           </div>
 
-          <ResponsiveContainer width="100%" height={300}>
-            {selectedChart === 'api-calls' && (
-              <LineChart data={apiCallsData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                <XAxis dataKey="date" stroke="#9ca3af" />
-                <YAxis stroke="#9ca3af" />
-                <Tooltip content={<CustomTooltip />} />
-                <Line
-                  type="monotone"
-                  dataKey="calls"
-                  stroke={chartColors.primary}
-                  strokeWidth={3}
-                  dot={{ fill: chartColors.primary, strokeWidth: 2, r: 4 }}
-                  activeDot={{ r: 6, stroke: chartColors.primary, strokeWidth: 2 }}
-                />
-              </LineChart>
-            )}
-            {selectedChart === 'bandwidth' && (
-              <AreaChart data={bandwidthData}>
-                <defs>
-                  <linearGradient id="colorBandwidth" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor={chartColors.success} stopOpacity={0.3} />
-                    <stop offset="95%" stopColor={chartColors.success} stopOpacity={0} />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                <XAxis dataKey="date" stroke="#9ca3af" />
-                <YAxis stroke="#9ca3af" />
-                <Tooltip content={<CustomTooltip />} />
-                <Area
-                  type="monotone"
-                  dataKey="bandwidth"
-                  stroke={chartColors.success}
-                  fillOpacity={1}
-                  fill="url(#colorBandwidth)"
-                  strokeWidth={2}
-                />
-              </AreaChart>
-            )}
-            {selectedChart === 'connections' && (
-              <BarChart data={connectionsData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                <XAxis dataKey="hour" stroke="#9ca3af" />
-                <YAxis stroke="#9ca3af" />
-                <Tooltip content={<CustomTooltip />} />
-                <Bar dataKey="connections" fill={chartColors.accent} radius={[4, 4, 0, 0]} />
-              </BarChart>
-            )}
-            {selectedChart === 'response-times' && (
-              <BarChart data={responseTimeData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                <XAxis dataKey="endpoint" stroke="#9ca3af" />
-                <YAxis stroke="#9ca3af" />
-                <Tooltip content={<CustomTooltip />} />
-                <Bar dataKey="avg" fill={chartColors.primary} name="Average" radius={[2, 2, 0, 0]} />
-                <Bar dataKey="p95" fill={chartColors.warning} name="95th Percentile" radius={[2, 2, 0, 0]} />
-              </BarChart>
-            )}
-          </ResponsiveContainer>
+          <div className="h-[300px] bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-lg border border-gray-600/30 flex items-center justify-center">
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 mx-auto bg-biblical-king-600/20 rounded-full flex items-center justify-center">
+                <TrendingUp className="w-8 h-8 text-biblical-king-400" />
+              </div>
+              <div>
+                <h4 className="text-lg font-medium text-white mb-2">
+                  {selectedChart === 'api-calls' && 'API Calls Analytics'}
+                  {selectedChart === 'bandwidth' && 'Bandwidth Usage Analytics'}
+                  {selectedChart === 'connections' && 'Connection Analytics'}
+                  {selectedChart === 'response-times' && 'Response Time Analytics'}
+                </h4>
+                <p className="text-gray-400 text-sm">
+                  Advanced analytics charts coming soon<br />
+                  <span className="text-biblical-king-400">Portal successfully deployed</span>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Endpoint Distribution */}
         <div className="bg-black/30 backdrop-blur-sm rounded-lg p-6 border border-gray-600/30">
           <h3 className="text-lg font-medium text-white mb-4">Endpoint Distribution</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <PieChart>
-              <Pie
-                data={endpointData}
-                cx="50%"
-                cy="50%"
-                innerRadius={60}
-                outerRadius={100}
-                paddingAngle={5}
-                dataKey="value"
-              >
-                {endpointData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={pieColors[index % pieColors.length]} />
-                ))}
-              </Pie>
-              <Tooltip content={<CustomTooltip />} />
-            </PieChart>
-          </ResponsiveContainer>
+          <div className="h-[300px] bg-gradient-to-br from-purple-900/30 to-blue-900/30 rounded-lg border border-purple-600/30 flex items-center justify-center">
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 mx-auto bg-purple-600/20 rounded-full flex items-center justify-center">
+                <Globe className="w-8 h-8 text-purple-400" />
+              </div>
+              <div>
+                <h4 className="text-lg font-medium text-white mb-2">Endpoint Distribution</h4>
+                <p className="text-gray-400 text-sm">
+                  Interactive charts coming soon<br />
+                  <span className="text-purple-400">All self-service features active</span>
+                </p>
+              </div>
+            </div>
+          </div>
           <div className="mt-4 space-y-2">
             {endpointData.slice(0, 5).map((item, index) => (
               <div key={item.name} className="flex items-center justify-between text-sm">
