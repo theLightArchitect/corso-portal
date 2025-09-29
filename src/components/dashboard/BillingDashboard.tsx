@@ -305,7 +305,7 @@ export const BillingDashboard: React.FC<BillingDashboardProps> = ({
                       <div className="font-medium text-white">{invoice.invoice_number}</div>
                       {invoice.items.length > 0 && (
                         <div className="text-sm text-gray-400 mt-1">
-                          {invoice.items[0].description}
+                          {invoice.items[0]?.description}
                           {invoice.items.length > 1 && ` +${invoice.items.length - 1} more`}
                         </div>
                       )}
