@@ -280,66 +280,73 @@ export const UsageAnalytics: React.FC<UsageAnalyticsProps> = ({
           </div>
 
           <ResponsiveContainer width="100%" height={300}>
-            {selectedChart === 'api-calls' && (
-              <LineChart data={apiCallsData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                <XAxis dataKey="date" stroke="#9ca3af" />
-                <YAxis stroke="#9ca3af" />
-                <Tooltip content={<CustomTooltip />} />
-                <Line
-                  type="monotone"
-                  dataKey="calls"
-                  stroke={chartColors.primary}
-                  strokeWidth={3}
-                  dot={{ fill: chartColors.primary, strokeWidth: 2, r: 4 }}
-                  activeDot={{ r: 6, stroke: chartColors.primary, strokeWidth: 2 }}
-                />
-              </LineChart>
-            )}
-
-            {selectedChart === 'bandwidth' && (
-              <AreaChart data={bandwidthData}>
-                <defs>
-                  <linearGradient id="colorBandwidth" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor={chartColors.success} stopOpacity={0.3} />
-                    <stop offset="95%" stopColor={chartColors.success} stopOpacity={0} />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                <XAxis dataKey="date" stroke="#9ca3af" />
-                <YAxis stroke="#9ca3af" />
-                <Tooltip content={<CustomTooltip />} />
-                <Area
-                  type="monotone"
-                  dataKey="bandwidth"
-                  stroke={chartColors.success}
-                  fillOpacity={1}
-                  fill="url(#colorBandwidth)"
-                  strokeWidth={2}
-                />
-              </AreaChart>
-            )}
-
-            {selectedChart === 'connections' && (
-              <BarChart data={connectionsData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                <XAxis dataKey="hour" stroke="#9ca3af" />
-                <YAxis stroke="#9ca3af" />
-                <Tooltip content={<CustomTooltip />} />
-                <Bar dataKey="connections" fill={chartColors.accent} radius={[4, 4, 0, 0]} />
-              </BarChart>
-            )}
-
-            {selectedChart === 'response-times' && (
-              <BarChart data={responseTimeData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                <XAxis dataKey="endpoint" stroke="#9ca3af" />
-                <YAxis stroke="#9ca3af" />
-                <Tooltip content={<CustomTooltip />} />
-                <Bar dataKey="avg" fill={chartColors.primary} name="Average" radius={[2, 2, 0, 0]} />
-                <Bar dataKey="p95" fill={chartColors.warning} name="95th Percentile" radius={[2, 2, 0, 0]} />
-              </BarChart>
-            )}
+            {(() => {
+              switch (selectedChart) {
+                case 'api-calls':
+                  return (
+                    <LineChart data={apiCallsData}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                      <XAxis dataKey="date" stroke="#9ca3af" />
+                      <YAxis stroke="#9ca3af" />
+                      <Tooltip content={<CustomTooltip />} />
+                      <Line
+                        type="monotone"
+                        dataKey="calls"
+                        stroke={chartColors.primary}
+                        strokeWidth={3}
+                        dot={{ fill: chartColors.primary, strokeWidth: 2, r: 4 }}
+                        activeDot={{ r: 6, stroke: chartColors.primary, strokeWidth: 2 }}
+                      />
+                    </LineChart>
+                  );
+                case 'bandwidth':
+                  return (
+                    <AreaChart data={bandwidthData}>
+                      <defs>
+                        <linearGradient id="colorBandwidth" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor={chartColors.success} stopOpacity={0.3} />
+                          <stop offset="95%" stopColor={chartColors.success} stopOpacity={0} />
+                        </linearGradient>
+                      </defs>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                      <XAxis dataKey="date" stroke="#9ca3af" />
+                      <YAxis stroke="#9ca3af" />
+                      <Tooltip content={<CustomTooltip />} />
+                      <Area
+                        type="monotone"
+                        dataKey="bandwidth"
+                        stroke={chartColors.success}
+                        fillOpacity={1}
+                        fill="url(#colorBandwidth)"
+                        strokeWidth={2}
+                      />
+                    </AreaChart>
+                  );
+                case 'connections':
+                  return (
+                    <BarChart data={connectionsData}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                      <XAxis dataKey="hour" stroke="#9ca3af" />
+                      <YAxis stroke="#9ca3af" />
+                      <Tooltip content={<CustomTooltip />} />
+                      <Bar dataKey="connections" fill={chartColors.accent} radius={[4, 4, 0, 0]} />
+                    </BarChart>
+                  );
+                case 'response-times':
+                  return (
+                    <BarChart data={responseTimeData}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                      <XAxis dataKey="endpoint" stroke="#9ca3af" />
+                      <YAxis stroke="#9ca3af" />
+                      <Tooltip content={<CustomTooltip />} />
+                      <Bar dataKey="avg" fill={chartColors.primary} name="Average" radius={[2, 2, 0, 0]} />
+                      <Bar dataKey="p95" fill={chartColors.warning} name="95th Percentile" radius={[2, 2, 0, 0]} />
+                    </BarChart>
+                  );
+                default:
+                  return null;
+              }
+            })()}
           </ResponsiveContainer>
         </div>
 
