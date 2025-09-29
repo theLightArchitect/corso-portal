@@ -205,7 +205,7 @@ export const SignOutButton: React.FC<SignOutButtonProps> = ({
                   )}
                 </div>
 
-                {biblicalMessage && (
+                {farewell && (
                   <div className="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-3 border border-amber-200 dark:border-amber-700">
                     <p className="text-sm font-medium text-amber-800 dark:text-amber-200 mb-1">
                       {farewell.reference}
